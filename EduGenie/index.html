@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduGenie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <h1>EduGenie</h1>
+      <p>Ask something, learn it properly, then check what stuck.</p>
+    </header>
+
+    <nav class="tabs" aria-label="Tools">
+      <button type="button" class="tab" data-panel="qa" aria-current="true">Ask</button>
+      <button type="button" class="tab" data-panel="explain">Explain</button>
+      <button type="button" class="tab" data-panel="summary">Summarize</button>
+      <button type="button" class="tab" data-panel="quiz">Quiz</button>
+      <button type="button" class="tab" data-panel="path">Plan</button>
+    </nav>
+
+    <main>
+      <section class="panel" id="qa">
+        <h2>Ask a question</h2>
+        <p class="hint">Get a short, direct answer.</p>
+        <form id="qaForm" class="row">
+          <input type="text" id="question" placeholder="Why is the sky blue?" required>
+          <button type="submit" class="btn">Get answer</button>
+        </form>
+        <div id="qaResult" class="output" hidden></div>
+      </section>
+
+      <section class="panel" id="explain" hidden>
+        <h2>Explain a concept</h2>
+        <p class="hint">Type a topic and get a plain-language explanation.</p>
+        <form id="explainForm" class="row">
+          <input type="text" id="topic" placeholder="Photosynthesis" required>
+          <button type="submit" class="btn">Explain</button>
+        </form>
+        <div id="explainResult" class="output" hidden></div>
+      </section>
+
+      <section class="panel" id="summary" hidden>
+        <h2>Summarize a passage</h2>
+        <p class="hint">Paste a long text and get the main points.</p>
+        <form id="summaryForm" class="stack">
+          <textarea id="summaryText" rows="6" placeholder="Paste the text you want summarized" required></textarea>
+          <button type="submit" class="btn">Summarize</button>
+        </form>
+        <div id="summaryResult" class="output" hidden></div>
+      </section>
+
+      <section class="panel" id="quiz" hidden>
+        <h2>Test yourself</h2>
+        <p class="hint">Enter a topic or paste a passage to get multiple-choice questions.</p>
+        <form id="quizForm" class="row">
+          <input type="text" id="quizText" placeholder="Pythagoras theorem, or paste a passage" required>
+          <button type="submit" class="btn">Make quiz</button>
+        </form>
+        <div id="quizResult" class="output" hidden></div>
+      </section>
+
+      <section class="panel" id="path" hidden>
+        <h2>Plan what to learn</h2>
+        <p class="hint">Get a step-by-step order for learning a subject.</p>
+        <form id="pathForm" class="row">
+          <input type="text" id="pathTopic" placeholder="SQL" required>
+          <button type="submit" class="btn">Plan my path</button>
+        </form>
+        <div id="pathResult" class="output" hidden></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

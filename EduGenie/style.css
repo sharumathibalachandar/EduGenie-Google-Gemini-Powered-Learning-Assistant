@@ -1,0 +1,164 @@
+:root {
+  --ink: #1b1b2f;
+  --muted: #5d6075;
+  --bg: #eef1f7;
+  --white: #ffffff;
+  --coral: #ff8a6b;
+  --mint: #5fd0a5;
+  --sky: #6cb8ff;
+  --sun: #ffd24d;
+  --lilac: #b79cff;
+  --good: #11784a;
+  --bad: #c0301c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font: 16px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.shell {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem 4rem;
+}
+
+/* ---------- header ---------- */
+
+.masthead h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 8vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.masthead p { margin: .5rem 0 0; color: var(--muted); }
+
+/* ---------- tool switcher: one colour per tool ---------- */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: .6rem;
+  margin: 1.75rem 0 1.25rem;
+}
+
+.tab[data-panel="qa"]      { --c: var(--coral); }
+.tab[data-panel="explain"] { --c: var(--mint); }
+.tab[data-panel="summary"] { --c: var(--sky); }
+.tab[data-panel="quiz"]    { --c: var(--sun); }
+.tab[data-panel="path"]    { --c: var(--lilac); }
+
+#qa      { --c: var(--coral); }
+#explain { --c: var(--mint); }
+#summary { --c: var(--sky); }
+#quiz    { --c: var(--sun); }
+#path    { --c: var(--lilac); }
+
+.tab {
+  padding: .7rem .5rem;
+  font: 700 .95rem/1.2 inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tab:hover { background: var(--c); }
+
+.tab[aria-current="true"] {
+  background: var(--c);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+/* ---------- panel ---------- */
+
+.panel {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-top: 14px solid var(--c);
+  border-radius: 14px;
+  padding: 1.4rem 1.4rem 1.6rem;
+}
+
+h2 { margin: 0; font-size: 1.5rem; line-height: 1.2; letter-spacing: -0.01em; }
+.hint { margin: .25rem 0 1.1rem; color: var(--muted); }
+
+form.row { display: flex; gap: .5rem; }
+form.stack { display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
+
+input[type="text"], textarea {
+  flex: 1;
+  width: 100%;
+  padding: .7rem .85rem;
+  font: inherit;
+  color: inherit;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+}
+
+input::placeholder, textarea::placeholder { color: #8c90a4; }
+textarea { resize: vertical; }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.btn {
+  padding: .7rem 1.2rem;
+  font: 700 .95rem/1.2 inherit;
+  color: var(--white);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover { background: var(--c); color: var(--ink); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .55; cursor: wait; }
+
+.btn.secondary { margin-top: .5rem; color: var(--ink); background: var(--white); }
+.btn.secondary:hover { background: var(--c); }
+
+/* ---------- results ---------- */
+
+.output {
+  margin-top: 1.25rem;
+  padding: 1rem 1.2rem;
+  background: color-mix(in srgb, var(--c) 16%, white);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  max-height: 32rem;
+  overflow-y: auto;
+}
+
+.output h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+.output h4 { margin: 1rem 0 .25rem; font-size: 1rem; }
+.output p { margin: .45rem 0; max-width: 66ch; }
+.output ul, .output ol { margin: .3rem 0 .7rem; padding-left: 1.3rem; max-width: 66ch; }
+.output li { margin: .15rem 0; }
+
+.question { padding: .9rem 0; border-top: 2px dashed rgba(27, 27, 47, .25); }
+.question:first-of-type { border-top: 0; }
+.option { display: block; padding: .3rem 0; cursor: pointer; }
+.option input { margin-right: .5rem; }
+.verdict { min-height: 1.5em; margin: .5rem 0 0; font-weight: 700; }
+
+.muted { color: var(--muted); }
+.good { color: var(--good); }
+.error { color: var(--bad); }
+
+@media (max-width: 30rem) {
+  form.row { flex-direction: column; }
+  .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
